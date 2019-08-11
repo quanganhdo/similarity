@@ -191,7 +191,7 @@ if (!window.similarity) {
 		}
 
 		function displayChoice () {
-			var html = '<p>What would you like to do?</p><br><button id="similarity-Tabs">Open in tabs</button><button id="similarity-Markdown">Markdown list</button>';
+			var html = '<p>What would you like to do?</p><br><button id="similarity-Tabs">Open in tabs</button><button id="similarity-Markdown">Markdown list</button><button id="similarity-Links">Link list</button>';
 			var bg = createBackground();
 			var choiceDiv = document.createElement('div');
 			choiceDiv.id = 'choiceDiv';
@@ -215,6 +215,8 @@ if (!window.similarity) {
 				openTabs();
 			} else if (choice === 'markdown') {
 				displayText(buildMarkdown());
+			} else if (choice === 'links') {
+			  displayText(buildLinks());
 			}
 		}
 
@@ -241,6 +243,16 @@ if (!window.similarity) {
 			}
 			return output.join("\n");
 		}
+    
+    function buildLinks() {
+  		var output = [],
+        i;
+  		for (i = 0; i < similarity.similar.length; i++) {
+  			var linkURL = similarity.similar[i].href;
+        output.push(linkURL);
+  		}
+  		return output.join("\n");
+    }
 
 		function displayText (text) {
 			var bg = createBackground();
